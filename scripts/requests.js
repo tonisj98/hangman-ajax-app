@@ -9,12 +9,30 @@
  */
 
 function getMovieFromJSON(words) {
+    const url = 'https://raw.githubusercontent.com/hjorturlarsen/IMDB-top-100/master/data/movies.json'
+    fetch(url).
+        then(response => response.json()).
+        then(result => procesarRespuesta(result, words))
+}
 
-    // Fetch..https://github.com/hjorturlarsen/IMDB-top-100/blob/master/data/movies.json
-    return {
-        title: "Memento",
-        rank: 37,
-        id: "tt0209144"
+function procesarRespuesta(result, wordsNumber) {
+    console.log(result)
+    let newArray = result;
+
+    if (wordsNumber) {
+        newArray = result.map(element => {
+            element.words = element.title.split(" ").length
+            return element
+        })
+
+        newArray = newArray.filter(element => {
+            return element.words == wordsNumber
+        })
     }
+
+    let movie = getRandomValueFromArray(newArray)
+    setMovieToGuess(movie)
+
+    startGame()
 }
 

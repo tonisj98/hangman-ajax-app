@@ -13,17 +13,81 @@
 
 let intentos = 5
 let lettersTested = []
+let movieToGuess; //objeto/string de la película adivinar
 
-function setNumGuessins(num) {
-   // intentos = num
+function setMovieToGuess(movie) {
+    movieToGuess = movie
+    movieToGuess.title = movieToGuess.title.toLowerCase()
 }
 
+function getMovieToGuess() {
+    return movieToGuess
+}
+
+function getLettersTested() {
+    return lettersTested
+}
+
+function resetLettersTested() {
+    lettersTested = []
+    //TODO: borrar del DOM la lista de letras probadas
+}
+
+function checkIfGameWin() {
+    // Comprueba si ya hemos adivinado todas las letras
+    // Recorrer 'movieToGuess' y comprobar si cada una de sus carácteres se encuentra ya adivinado en 'lettersTested'
+
+}
+
+function checkIfGameLost() {
+    // Comprobar si el núemro de intentos restantes es igual 0
+}
+
+function setNumGuessins(num) {
+   intentos = num
+   updateGuessingText(num)
+}
+
+/**
+ * Devuelve true si la letra esta en título de la película o false en caso contrario
+ * @param {*} letter 
+ */
 function tryLetter(letter) {
-    // si fallamos la letra y nivel de dificultad es 1, restar 1 al numero de intentos
-    // Si fallamos la etra y nivel dificultad >=2; restar 2 intentos
+    return movieToGuess.title.includes(letter)
+}
+
+function checkIfLetterHasBeenAlreadyTested(letter){
+    return lettersTested.includes(letter)
+}
+
+function addCheckedLetter(letter) {
+    lettersTested.push(letter)
+}
+
+function decrementGuessings() {
+    let newIntentos = intentos
+    newIntentos--
+    setNumGuessins(newIntentos)
 }
 
 function newLetterTested(letter) {
-    // comrpobar si ya hemos añadido esta letra
-   // lettersTested.push(letter)
-}
+    // 1. Comrpobar si la 'letter' está en el array de letras probadas. En caso afirmativo, salir y no hace nada más
+
+    // 2. Si la letra NO está en nuestro título de película: decrementar el número de intentos y añadir la letra al conjunto de letras probadas
+    //    Si la letra SÍ está en nuestro título de película: actualizar el DOM donde aparecen los ***; y también añadir la letra al conjunto de letras probadas
+
+    if (checkIfLetterHasBeenAlreadyTested(letter)) {
+        return
+    }
+
+    addCheckedLetter(letter)
+    if (tryLetter(letter)) {
+        // hemos adivinado una letra!
+        render(movieToGuess.title, lettersTested)
+    }
+    else {
+        decrementGuessings()
+        setNumGuessins(intentos)
+    }
+   
+}   
