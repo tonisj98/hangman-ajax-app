@@ -1,30 +1,18 @@
-let game1
-const puzzleDIV = document.querySelector('#puzzle');
-const remainingDIV = document.querySelector('#guesses');
+/**
+ * Punto de entrada de la aplicación.
+ */
 
-window.addEventListener('keypress', (e) => {
+/**
+ * 1. Llamar a la API y obtener una película
+ * 2. Setear todas las variables de estado (intentos, palabra a adivinar, etc)
+ * 3. Hacer un primer "pintado" del DOM
+ * 4. Añadir listener para que cada vez que el usuario pulse una tecla, se genere un evento y se actualice el estado de toda nuestra aplicación
+ */
 
-    const guess = String.fromCharCode(e.charCode);
-    game1.makeGuess(guess);
-    render()
-})
+document.addEventListener('keydown', checkNewLetter);
 
-const render = () => {
-    puzzleDIV.innerHTML = ''
-    remainingDIV.textContent = game1.statusMessage;
-
-    game1.puzzle.split('').forEach((letter) => {
-        const letterEl = document.createElement('span')
-        letterEl.textContent = letter
-        puzzleDIV.appendChild(letterEl)
-    })
+function checkNewLetter(event) {
+    // Actualizar estado...
+    // Repintar el DOM...
+    console.log(event)
 }
-
-const startGame = async () => {
-    const puzzle = await getPuzzle('3')
-    game1 = new Hangman(puzzle, 5)
-    render()
-}
-
-document.querySelector('#reset').addEventListener('click', startGame)
-startGame()
