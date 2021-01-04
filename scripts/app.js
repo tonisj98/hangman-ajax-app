@@ -9,9 +9,14 @@
  * 4. Añadir listener para que cada vez que el usuario pulse una tecla, se genere un evento y se actualice el estado de toda nuestra aplicación
  */
 
-getMovieFromJSON() 
+startGame() 
 
 document.addEventListener('keydown', checkNewLetter);
+document.querySelector('#reset').addEventListener('click', startGame)
+
+function startGame(){
+    getMovieFromJSON(MOVIE_NUM_WORDS)
+}
 
 function checkNewLetter(event) {
     // Actualizar estado...
@@ -20,12 +25,12 @@ function checkNewLetter(event) {
     newLetterTested(event.key)
 }
 
-function startGame() {
+function setupGame() {
     // Tenemos que setear nuestra aplicación con el estado inicial
     // 1. Setear el número de intentos a 5 (estado y en el DOM)
     // 2. "Vaciar" el array de letras probadas
     // 3. Render inicial
-    setNumGuessins(5)
+    setNumGuessins(INITIAL_GUESSINGS)
     resetLettersTested()
     render(getMovieToGuess().title, getLettersTested())
 }

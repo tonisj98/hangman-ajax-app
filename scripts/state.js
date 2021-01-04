@@ -10,8 +10,12 @@
  * 
  * Definir funciones para actualizar cada una de las variables, o para cambiar el estado
  */
+const WIN_SOUND = '/sounds/win.wav'
+const LOST_SOUND = '/sounds/lost.wav'
+const INITIAL_GUESSINGS = 5
+const MOVIE_NUM_WORDS = 2
 
-let intentos = 5
+let intentos;
 let lettersTested = []
 let movieToGuess; //objeto/string de la película adivinar
 
@@ -36,11 +40,28 @@ function resetLettersTested() {
 function checkIfGameWin() {
     // Comprueba si ya hemos adivinado todas las letras
     // Recorrer 'movieToGuess' y comprobar si cada una de sus carácteres se encuentra ya adivinado en 'lettersTested'
+    let splittedTitle = movieToGuess.title.split('')
+    let allGuessed = splittedTitle.every(element=> {
+        return lettersTested.includes(element) || element == ' '
+    })
 
+    if (allGuessed) {
+        document.removeEventListener('keydown', checkNewLetter)
+        showEndOfGameMessage(true)
+        let audio = new Audio(WIN_SOUND);
+        audio.play();
+    }
 }
 
 function checkIfGameLost() {
-    // Comprobar si el núemro de intentos restantes es igual 0
+    
+    if (intentos==0) {
+        // Eliminamos el listener para que no se deje de capturar el evento 'keydown'
+        document.removeEventListener('keydown', checkNewLetter)
+        showEndOfGameMessage(false)
+        let audio = new Audio(LOST_SOUND);
+        audio.play();
+    }
 }
 
 function setNumGuessins(num) {
@@ -84,10 +105,12 @@ function newLetterTested(letter) {
     if (tryLetter(letter)) {
         // hemos adivinado una letra!
         render(movieToGuess.title, lettersTested)
+        checkIfGameWin()
     }
     else {
         decrementGuessings()
-        setNumGuessins(intentos)
+        checkIfGameLost()
+
     }
    
 }   

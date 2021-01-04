@@ -16,7 +16,6 @@ function getMovieFromJSON(words) {
 }
 
 function procesarRespuesta(result, wordsNumber) {
-    console.log(result)
     let newArray = result;
 
     if (wordsNumber) {
@@ -33,6 +32,6 @@ function procesarRespuesta(result, wordsNumber) {
     let movie = getRandomValueFromArray(newArray)
     setMovieToGuess(movie)
 
-    startGame()
+    setupGame()
 }
 
