@@ -1,9 +1,11 @@
 # El Joc del Penjat (versió películes)
 
 Completa el proyecto siguiendo los requisitos descritos en __requisitos.txt__
+[Demo](https://hangman-ajax-app.vercel.app/) del proyecto.
 
 ## Pasos para afrontar el proyecto
 
+0. Renombra la carpeta __script__ que contiene la solución al prpoyecto.
 1. Implementad primero el fichero requests.js. Cread la función y comprobad que hace lo que tiene que hacer (devolver un objeto con la película recupera de la API)
 2. Seteis manualmente el estado de la aplicación (palabra a resolver, número de intentos, etc). Implementad el **dom.js**; hasta que consigais que en función de las letras probadas os muestre correctamente la información gráfica.
    1. Primera implementación: Dada una frase cualquiera, que muestre tantos asteríscos como letras tiene la frase. Además, que haga el seprado de las palabras con un espacio
