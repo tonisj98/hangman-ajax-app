@@ -1,37 +1,58 @@
-/**
- * Punto de entrada de la aplicación.
- */
+startGame()
 
-/**
- * 1. Llamar a la API y obtener una película
- * 2. Setear todas las variables de estado (intentos, palabra a adivinar, etc)
- * 3. Hacer un primer "pintado" del DOM
- * 4. Añadir listener para que cada vez que el usuario pulse una tecla, se genere un evento y se actualice el estado de toda nuestra aplicación
- */
-
-startGame() 
-
-document.querySelector('#reset').addEventListener('click', startGame)
-
-function startGame(){
-    getMovieFromJSON(MOVIE_NUM_WORDS)
+function startGame() {
+    Requests.getMovieFromJSON(processJSONResponse)
+    document.querySelector('#reset').addEventListener('click', startGame)
 }
 
 function checkNewLetter(event) {
-    // Actualizar estado...
-    // Repintar el DOM...
-    newLetterTested(event.key)
+    let alreadyTried = Status.newLetterTested(event.key)
+    Dom.updateGuessingText(Status.chances)
+    Dom.addTestedLetters(Status.lettersTested)
+    
+    if (Status.gameState == 1) {
+        document.removeEventListener('keydown', checkNewLetter)
+        Dom.showEndOfGameMessage(true)
+
+        let audio = new Audio(CONFIG.WIN_SOUND);
+        audio.play();
+
+        Requests.getMovieFromIMDB(Status.movieToGuess.title, Dom.setBackgroundImage)
+    }
+
+    else if (Status.gameState == -1) {
+        document.removeEventListener('keydown', checkNewLetter)
+        Dom.showEndOfGameMessage(false)
+
+        let audio = new Audio(CONFIG.LOST_SOUND);
+        audio.play();
+    }
 }
 
-function setupGame() {
-    // Tenemos que setear nuestra aplicación con el estado inicial
-    // 1. Setear el número de intentos a 5 (estado y en el DOM)
-    // 2. "Vaciar" el array de letras probadas
-    // 3. Render inicial
-    setNumGuessins(INITIAL_GUESSINGS)
-    resetLettersTested()
-    render(getMovieToGuess().title, getLettersTested())
-    resetDOM()
+function setupGame(movie) {
+    Status.setupGame(movie)
+    Dom.resetDOM()
+    Dom.render(Status.movieToGuess.title, Status.lettersTested)
+    Dom.updateGuessingText(Status.chances)
     document.addEventListener('keydown', checkNewLetter);
+}
 
+
+function processJSONResponse(result) {
+    
+    let newArray = result;
+    let wordsNumber = CONFIG.MOVIE_NUM_WORDS
+
+    if (wordsNumber) {
+        newArray = result.map(element => {
+            element.words = element.title.split(" ").length
+            return element
+        })
+
+        newArray = newArray.filter(element => {
+            return element.words == wordsNumber
+        })
+    }
+    let movie = Utils.getRandomValueFromArray(newArray)
+    setupGame(movie)
 }
