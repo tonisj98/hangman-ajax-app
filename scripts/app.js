@@ -54,5 +54,6 @@ function processJSONResponse(result) {
         })
     }
     let movie = Utils.getRandomValueFromArray(newArray)
-    setupGame(movie)
+    setupGame(movie) // Esta decisión de pasar el objeto entero en vez de solo el título, tendrá consecuencias.
+    // Cuando quieres flexibilidad (poder consultar más tarde el ranking de la película, por ejemplo); pierdes simplicidad (el dato a minuplar es más complejo)
 }

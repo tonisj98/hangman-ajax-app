@@ -5,7 +5,7 @@ const CONFIG = {
     MOVIE_NUM_WORDS: 2,
     GAME_STATUS: {
         WIN: 1,
-        PLAYING:0,
+        PLAYING: 0,
         LOST: -1
     }
 }
@@ -14,7 +14,7 @@ const Status = {
     chances: CONFIG.INITIAL_GUESSINGS,
     lettersTested: [],
     movieToGuess: undefined, 
-    gameState: CONFIG.GAME_STATUS.PLAYING, // -1, lost, 0 playing, 1 win
+    gameState: CONFIG.GAME_STATUS.PLAYING, 
 
     setupGame(movieToGuess) {
         console.log("Movie to guess:", movieToGuess)

@@ -18,6 +18,11 @@ const Requests = {
 
     },
 
+    /**
+     * Hace una llamada AJAX para obtener el fichero JSON.
+     * 
+     * @param {*} cb Función callback. Función que vamos a invocar, pasándole un parámetro de resultados, cuando haya terminado la llamada AJAX
+     */
     getMovieFromJSON(cb) {
         const url = 'https://raw.githubusercontent.com/hjorturlarsen/IMDB-top-100/master/data/movies.json'
         fetch(url).

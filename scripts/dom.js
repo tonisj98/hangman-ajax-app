@@ -10,6 +10,7 @@ const Dom = {
         let span
         for (letter of sentence) {
             span = document.createElement('span')
+            // texTcontent del span es un espacio; o bien, tenemos que comprobar si hemos adivinado la letra ya; y poner la letra o un * (asterisco)
             span.textContent = (letter == " ") ? " " : this.updateLetterStatus(letter, lettersTested)
             guessingBox.appendChild(span)
         }
