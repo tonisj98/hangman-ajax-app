@@ -6,11 +6,11 @@ function startGame() {
 }
 
 function checkNewLetter(event) {
-    let alreadyTried = Status.newLetterTested(event.key)
+    Status.newLetterTested(event.key)
     Dom.updateGuessingText(Status.chances)
     Dom.addTestedLetters(Status.lettersTested)
     
-    if (Status.gameState == 1) {
+    if (Status.isGameWin()) {
         document.removeEventListener('keydown', checkNewLetter)
         Dom.showEndOfGameMessage(true)
 
@@ -20,7 +20,7 @@ function checkNewLetter(event) {
         Requests.getMovieFromIMDB(Status.movieToGuess.title, Dom.setBackgroundImage)
     }
 
-    else if (Status.gameState == -1) {
+    else if (Status.isGameLost()) {
         document.removeEventListener('keydown', checkNewLetter)
         Dom.showEndOfGameMessage(false)
 
