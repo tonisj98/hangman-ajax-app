@@ -50,6 +50,7 @@ function checkIfGameWin() {
         showEndOfGameMessage(true)
         let audio = new Audio(WIN_SOUND);
         audio.play();
+        getMovieFromIMDB(movieToGuess.title, setBackgroundImage)
     }
 }
 
@@ -83,6 +84,7 @@ function checkIfLetterHasBeenAlreadyTested(letter){
 
 function addCheckedLetter(letter) {
     lettersTested.push(letter)
+    addTestedLetter(letter) 
 }
 
 function decrementGuessings() {
@@ -102,6 +104,7 @@ function newLetterTested(letter) {
     }
 
     addCheckedLetter(letter)
+    
     if (tryLetter(letter)) {
         // hemos adivinado una letra!
         render(movieToGuess.title, lettersTested)
@@ -110,7 +113,6 @@ function newLetterTested(letter) {
     else {
         decrementGuessings()
         checkIfGameLost()
-
     }
    
 }   

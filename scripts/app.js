@@ -11,7 +11,6 @@
 
 startGame() 
 
-document.addEventListener('keydown', checkNewLetter);
 document.querySelector('#reset').addEventListener('click', startGame)
 
 function startGame(){
@@ -21,7 +20,6 @@ function startGame(){
 function checkNewLetter(event) {
     // Actualizar estado...
     // Repintar el DOM...
-    console.log(event.key)
     newLetterTested(event.key)
 }
 
@@ -33,4 +31,7 @@ function setupGame() {
     setNumGuessins(INITIAL_GUESSINGS)
     resetLettersTested()
     render(getMovieToGuess().title, getLettersTested())
+    resetDOM()
+    document.addEventListener('keydown', checkNewLetter);
+
 }

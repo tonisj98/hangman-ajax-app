@@ -8,6 +8,16 @@
  * 
  */
 
+function getMovieFromIMDB(title, cb) {
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=f67a8ad780c75b59b2e185315b4e7818&language=en-US&page=1&include_adult=false&query=${title}`
+    const path_to_images = 'https://image.tmdb.org/t/p/original'
+    fetch(url).
+    then(response => response.json()).
+    then(result => cb(path_to_images + result.results[0].poster_path)).
+    catch(error => console.error(error))
+    
+}
+
 function getMovieFromJSON(words) {
     const url = 'https://raw.githubusercontent.com/hjorturlarsen/IMDB-top-100/master/data/movies.json'
     fetch(url).

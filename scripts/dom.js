@@ -54,3 +54,20 @@ function updateGuessingText(numGuessing) {
 
     guesses.textContent = "Intentos: " + numGuessing
 }
+
+function setBackgroundImage(url) {
+    document.body.style.backgroundImage = `url(${url})`
+    document.body.style.backgroundSize = 'cover'
+}
+
+function resetDOM() {
+    document.body.style.backgroundImage = ''
+    document.body.style.backgroundSize = ''
+}
+
+function addTestedLetter(letter) {
+    let letters_tried = document.querySelector('#letters-tried')
+    let span = document.createElement('span')
+    span.textContent = letter
+    letters_tried.appendChild(span)
+}
