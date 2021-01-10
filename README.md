@@ -2,6 +2,7 @@
 
 Completa el proyecto siguiendo los requisitos descritos en __requisitos.txt__
 [Demo](https://hangman-ajax-app.vercel.app/) del proyecto.
+[Demo en Github Pages](https://omiras.github.io/hangman-ajax-app/)
 
 ## Pasos para afrontar el proyecto
 
