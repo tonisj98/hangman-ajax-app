@@ -1,0 +1,4 @@
+1. Quin tipus de petició HTTP es fa a la API de películes?
+2. Com es diu el nom del paràmetre de la QueryString que determina el número de paraules que ha de tenir la película a endevinar?
+3. Quantes películes recuperem en total de la API?
+4. En quin format recuperem les pelicules de la API?
