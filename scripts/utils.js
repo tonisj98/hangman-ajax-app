@@ -1,8 +1,1 @@
-const Utils = {
-    getRandomValueFromArray(arr) {
-        let numElements = arr.length
-        let randomIndex = Math.floor(Math.random() * numElements)
-
-        return arr[randomIndex]
-    }
-}
+// En este fichero vamos a guardar un conjunto de funciones independientes de nuestro proyecto
