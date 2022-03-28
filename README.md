@@ -44,3 +44,12 @@ Diferentes ficheros para cada grupo de funcionalidades.
 - Mantener el estado de la app: palabra a adivinar, letras ya pulsada, intentos, número de palabras de la película a adivinar
 - Manipulación del DOM: actualizar número intentor, mostrar asteríscos o letra adivinada
 - Archivo "inicial"; punto de entrada de la aplicación: configurar el juego (obtener palabra a adivinar, resetear número de intentos, etc).
+
+
+Recuperar datos de la pelicula en JSON
+Mostrar una linea por cada letra tenga la palabra
+Escuchar que escribe el usuario
+si la letra aparece recorrer la palabra y mostrar la posicion donde se encuentra la letra
+si la letra es incorrecta restar un intento
+si la palabra es la correcta celebrarlo
+si la palabra es la incorrecta game over
