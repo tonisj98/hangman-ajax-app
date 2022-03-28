@@ -1,1 +1,0 @@
-// En este fichero vamos a guardar un conjunto de funciones independientes de nuestro proyecto

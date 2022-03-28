@@ -1,1 +1,0 @@
-// En este fichero vamos a guardar toda la información perteneciente al estado de la APP
